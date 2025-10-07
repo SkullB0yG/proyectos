@@ -1,7 +1,3 @@
-¡Perfecto! Aquí tienes un listado en formato Markdown de herramientas de ciberseguridad que puedes desarrollar tú mismo con Python o Go, enfocadas en pruebas de vulnerabilidades como SQL Injection y otras similares. Son proyectos accesibles para quienes están empezando o tienen conocimientos intermedios.
-
----
-
 ## 🛠️ Herramientas de Ciberseguridad que Puedes Desarrollar
 
 ### 🔍 1. **Scanner de SQL Injection**
@@ -57,7 +53,3 @@
 - **Lenguaje recomendado:** Python
 - **Descripción:** Extrae y analiza formularios HTML para identificar posibles vectores de ataque.
 - **Tecnologías útiles:** `BeautifulSoup`, `requests`
-
----
-
-¿Te gustaría que te ayude a comenzar con uno de estos proyectos? Puedo ayudarte a escribir el esqueleto del código o darte ideas para los payloads.

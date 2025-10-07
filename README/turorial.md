@@ -1,5 +1,3 @@
-¡Qué alegría saber que todo te funcionó! 🎉 Ahora sí, aquí tienes un **tutorial completo paso a paso** para sincronizar tus proyectos de Visual Studio Code entre tu oficina (Windows) y tu casa (Linux) usando Git y GitHub.
-
 ---
 
 ## 🧭 Objetivo del tutorial
@@ -105,7 +103,3 @@ Y viceversa. Siempre que termines de trabajar en una máquina, haz `git push`, y
 - Usa siempre el mismo nombre de rama (`main` o `master`).
 - Puedes usar [SSH](https://docs.github.com/es/authentication/connecting-to-github-with-ssh) para evitar escribir tu contraseña cada vez.
 - Si usas extensiones o configuraciones en VS Code, activa **Settings Sync** para mantenerlas iguales en ambas máquinas.
-
----
-
-¿Quieres que te prepare un archivo README con este tutorial para que lo tengas guardado en tu proyecto? También puedo ayudarte a configurar SSH si quieres evitar logins repetidos.

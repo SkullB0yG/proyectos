@@ -2,7 +2,7 @@ from flask import Flask, request, make_response, redirect, render_template, url_
 
 app= Flask(__name__)
 
-@app.route("/")
+@app.route("/ip")
 def Obt_ip():
     """
     NOS PERMITE VER LA INFORMACION VER LA 
@@ -12,6 +12,11 @@ def Obt_ip():
     usr_ip_information = request.remote_addr
     response = make_response(redirect("/show_information_adress"))
     response.set_cookie("user_ip_information", usr_ip_information)
+    return response
+
+@app.route("/")
+def Init():
+    response = make_response(redirect("/home"))
     return response
 
 @app.route("/home")

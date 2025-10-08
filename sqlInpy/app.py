@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, redirect
+from flask import Flask, request, make_response, redirect, render_template, url_for
 
 app= Flask(__name__)
 
@@ -16,11 +16,17 @@ def Obt_ip():
 
 @app.route("/home")
 def Home():
-    return "hola soy el home"
+    return render_template("home.html")
 
 @app.route("/login")
 def Login():
-    return"hola soy un login"
+    client_ip = request.cookies.get("user_ip_information")
+    return render_template("login.html", user_ip=client_ip)
+
+@app.route("/login.html")
+def Loginhtml():
+    response = make_response(redirect("/login"))
+    return response
 
 @app.route("/show_information_adress")
 def Show_information():

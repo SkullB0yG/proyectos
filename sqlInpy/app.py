@@ -33,6 +33,15 @@ def Loginhtml():
     response = make_response(redirect("/login"))
     return response
 
+@app.route("/registro")
+def Registro():
+    return render_template("registro.html")
+
+@app.route("/registro.html")
+def Registrohtml():
+    response = make_response(redirect("/registro"))
+    return response
+
 @app.route("/show_information_adress")
 def Show_information():
     user_ip = request.cookies.get("user_ip_information")

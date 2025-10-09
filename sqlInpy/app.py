@@ -50,7 +50,11 @@ def Procesar():
     usuario=request.form['usuario']
     password=request.form['password']
     data=[nombre, apellido, email, usuario, password]
-    return data
+    with open("file", "+w") as file:
+        for i in data:
+            file.write(f"{i}\n")
+        file.close
+    return "Well done"
 
 @app.route("/show_information_adress")
 def Show_information():

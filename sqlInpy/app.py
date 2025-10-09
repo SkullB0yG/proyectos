@@ -42,6 +42,16 @@ def Registrohtml():
     response = make_response(redirect("/registro"))
     return response
 
+@app.route("/procesar_registro", methods=['POST'])
+def Procesar():
+    nombre=request.form['nombre']
+    apellido=request.form['apellido']
+    email=request.form['email']
+    usuario=request.form['usuario']
+    password=request.form['password']
+    data=[nombre, apellido, email, usuario, password]
+    return data
+
 @app.route("/show_information_adress")
 def Show_information():
     user_ip = request.cookies.get("user_ip_information")

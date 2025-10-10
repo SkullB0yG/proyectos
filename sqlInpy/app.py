@@ -1,6 +1,30 @@
 from flask import Flask, request, make_response, redirect, render_template, url_for
+import sqlite3
+
 
 app= Flask(__name__)
+
+
+
+def Insert_dataTable(table, nombre, email, usuario, password):
+
+    conn = sqlite3.connect(f"{table}.db")
+    cursor = conn.cursor()
+
+    cursor.execute(f'''
+        CREATE TABLE IF NOT EXISTS {table} (
+            id INTEGER PRIMARY KEY,
+            nombre TEXT,
+            apellido TEXT,
+            email TEXT,
+            usuario TEXT,
+            password TEXT
+        )
+    ''')
+    
+    cursor.execute(f"INSERT INTO {table} (nombre, email, usuario, password)VALUES (?, ?, ?, ?, ?)", (nombre, email, usuario, password))
+    conn.commit()
+    conn.close()
 
 @app.route("/ip")
 def Obt_ip():
@@ -44,16 +68,12 @@ def Registrohtml():
 
 @app.route("/procesar_registro", methods=['POST'])
 def Procesar():
-    nombre=request.form['nombre']
-    apellido=request.form['apellido']
-    email=request.form['email']
-    usuario=request.form['usuario']
-    password=request.form['password']
-    data=[nombre, apellido, email, usuario, password]
-    with open("file", "+w") as file:
-        for i in data:
-            file.write(f"{i}\n")
-        file.close
+    nombre = request.form['nombre']  
+    email = request.form['email']
+    usuario = request.form['usuario']
+    password = request.form['password']
+    Insert_dataTable("registro", nombre, email, usuario, password)
+
     return "Well done"
 
 @app.route("/show_information_adress")

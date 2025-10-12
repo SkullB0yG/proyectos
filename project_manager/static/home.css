@@ -12,11 +12,16 @@ body {
 }
 
 /* ==== Fondos circulares ==== */
-.circle_pink,
+.circle_pink{
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2rem);
+  z-index: 0
+}
 .circle_blue {
   position: absolute;
   border-radius: 50%;
-  filter: blur(5rem);
+  filter: blur(0.5rem);
   z-index: 0; /* siempre detrás del contenido */
 }
 
@@ -29,11 +34,11 @@ body {
 }
 
 .circle_blue {
-  width: 20rem;
-  height: 20rem;
+  width: 30rem;
+  height: 30rem;
   background: linear-gradient(to top left, #43B4D2, #00ffff, #0066ff);
-  top: 10rem;
-  right: 0;
+  top: 30rem;
+  right: 20rem;
   opacity: 0.9;
 }
 
@@ -98,13 +103,13 @@ body {
 }
 
 .otro {
-  width: 35%;
+  width: 40%;
   margin-top: 15rem; /* espacio para la navbar */
   display: grid;
-  grid-template-columns: repeat(1, 40rem);
+  grid-template-columns: repeat(1, 50rem);
   grid-template-rows: repeat(1, 22rem); 
   gap: 1rem;
-  justify-content: left; /* centra las columnas dentro del section */;
+  justify-content: left; /* centra las columnas dentro del section */
 }
 .card_info2 {
   width: 100%;              /* ocupa todo el ancho de su columna */

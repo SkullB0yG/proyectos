@@ -1,0 +1,215 @@
+
+Perfecto — buenísimo objetivo. Te doy un plan práctico, ordenado y con lo que **debes aprender + hacer** paso a paso para convertir esas referencias (neón, glassmorphism, tarjetas, UI radial) en tu **portfolio / site de writeups de hacking**. Asumo que tú vas a hacer todo (frontend + backend). Si en algún punto quieres que te genere código inicial (React + Tailwind + backend en Go o Node), dímelo y lo hago al instante.
+
+# 1) Meta mínima del proyecto (MVP)
+
+Una web donde puedas:
+
+* Mostrar un hero + imagen/ilustración (estilo neon/glass).
+* Página “Proyectos” con tarjetas filtrables.
+* Página “Writeups / Blog” (lista + posts).
+* Página “Sobre mí / Contacto”.
+* Panel admin simple (o usar Markdown en repo + generación estática).
+* Autenticación mínima si quieres editar contenido desde la web.
+
+# 2) Stack recomendado (moderno, buen aprendizaje)
+
+Frontend:
+
+* HTML5 + CSS3 (base).
+* JavaScript moderno (ES6+).
+* TypeScript (fuera muy recomendable).
+* Framework: **React (Vite)** o **Svelte** (React es más estándar; Svelte es más pequeño).
+* CSS: **TailwindCSS** para prototipado rápido + utilidades; aprende también CSS puro para efectos avanzados.
+* Animaciones: CSS (transitions, keyframes) + librerías (Framer Motion si usas React).
+
+Backend (elige uno, ambos son buenos para aprender):
+
+* **Go (Golang)** + net/http + alguna librería ORM (Gorm) — si quieres aprender Go (mencionaste interés).
+* o **Node.js + Express / NestJS** + TypeScript — más rápido para prototipos y abundante documentación.
+  Base de datos:
+* PostgreSQL (relacional) o SQLite (local/dev). Para escribir posts, proyectos.
+  Autenticación:
+* JWT o sesiones con cookies.
+  Hosting / Deploy:
+* Frontend: Vercel / Netlify (rápido).
+* Backend: Render / Railway / DigitalOcean droplet si quieres VPS.
+* DB: managed (supabase, railway, render) o PostgreSQL en VPS.
+
+Herramientas:
+
+* Git + GitHub (o GitLab).
+* VSCode.
+* Figma (diseño / prototipos).
+* Chrome DevTools / Lighthouse.
+
+# 3) Roadmap de aprendizaje y tareas (orden práctico)
+
+Voy a dividirlo por **fases** con tareas concretas.
+
+## Fase 0 — Preparación (1–3 días)
+
+* Aprender lo básico: HTML5, CSS3, JS ES6.
+* Instalar Node, Git, VSCode.
+* Crear repositorio y README.
+
+## Fase 1 — Diseño y prototipo (3–7 días)
+
+* Haz wireframes: hero, tarjetas de proyecto, navbar, footer.
+* Usa Figma o incluso papel.
+* Define paleta de colores (ej.: morado oscuro #1b0b3a, fucsia/neón #ff34a8, cyan #3fe8ff), tipografías (Google Fonts: Inter / Poppins para títulos).
+* Prototipa hero con el estilo de tus referencias: fondo degradado radial + burbujas + contenedor glass.
+
+## Fase 2 — Frontend básico (1–2 semanas)
+
+* Init proyecto con **Vite + React + TypeScript**.
+
+  * `npm create vite@latest my-portfolio -- --template react-ts`
+* Instala Tailwind y configúralo.
+* Crea componentes: `Header`, `Hero`, `ProjectsGrid`, `ProjectCard`, `BlogList`, `Post`.
+* Make responsive: mobile-first, breakpoint `sm/md/lg`.
+
+## Fase 3 — Efectos UI (glassmorphism, neon) (3–7 días)
+
+Aprende/implementa:
+
+* Degradados radiales en background (`background: radial-gradient(...)`).
+* Glassmorphism: `backdrop-filter: blur(8px); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 30px rgba(0,0,0,0.6);`
+* Brillos/neón: usar `filter: drop-shadow` y pseudo-elementos `::before` con gradientes.
+* Burbujas y puntos: elementos posicionados absolute con `border-radius:50%` y `mix-blend-mode`.
+* Animaciones sutiles: floating (translateY), hover glow (box-shadow increase), transition timing functions.
+* Para cristal translúcido con borde luminoso usa `border: 1px solid rgba(255,255,255,0.08)` + `background: linear-gradient(180deg, rgba(...))` y `backdrop-filter`.
+
+Te doy un ejemplo CSS para un “card glass” (puedes integrarlo a Tailwind mediante clases personalizadas):
+
+```css
+.card-glass {
+  background: rgba(255,255,255,0.04);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+}
+.card-glass::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 150, 0.08), transparent);
+  border-radius: 16px;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+```
+
+## Fase 4 — Backend + API (1–2 semanas)
+
+* Decide: Go o Node.
+* Crea API REST para:
+
+  * Obtener lista de proyectos.
+  * Obtener posts (writeups).
+  * Auth (login para edición si quieres).
+* Endpoints simples: `GET /api/projects`, `GET /api/posts/:slug`, `POST /api/posts` (protegido).
+* Para authoring fácil: puedes usar Markdown + frontmatter en el repo y servirlo estáticamente (simplifica mucho, sin DB).
+
+## Fase 5 — CMS / Administración (opcional)
+
+* Opción simple: editar posts como Markdown en GitHub y desplegar. (GitHub Pages + Vercel integrable).
+* Opción avanzada: panel admin con auth para crear posts guardados en DB.
+
+## Fase 6 — Deploy + CI (3–7 días)
+
+* Deploy frontend a Vercel/Netlify.
+* Deploy backend a Render/Railway.
+* Configurar dominio (ej. tusnombre.dev) y SSL (automático en servicios anteriores).
+* Añadir CI: GitHub Actions para tests / build.
+
+# 4) Checklist técnico (tareas concretas)
+
+* [ ] Init repo y README.
+* [ ] Wireframe en Figma.
+* [ ] Setup Vite + React + TS + Tailwind.
+* [ ] Componentizar UI (Header, Hero, Card, Footer).
+* [ ] Efectos: glass + glow + burbujas.
+* [ ] Responsive: mobile / tablet / desktop.
+* [ ] SEO básico + meta tags.
+* [ ] API para posts y proyectos (o markdown).
+* [ ] Autenticación mínima para admin.
+* [ ] Deploy frontend + backend.
+* [ ] Analytics / contacto funcional.
+
+# 5) Recursos de aprendizaje (enfocados, sigue en este orden)
+
+Frontend:
+
+* MDN Web Docs — HTML/CSS/JS (conceptos).
+* Curso o tutorial de Tailwind.
+* React docs + TypeScript + Vite tutorial.
+* Framer Motion (si quieres animaciones en React).
+  Design:
+* Tutoriales de glassmorphism (buscar “glassmorphism CSS”).
+* Figma: componentes y prototipado.
+  Backend:
+* Si eliges **Go**: “Tour of Go”, curso básico Go web (net/http).
+* Si eliges **Node**: Node + Express + TypeScript tutorial.
+  DB:
+* Tutorial PostgreSQL básico, y cómo usar una librería ORM/simple query driver.
+  Deployment:
+* Docs de Vercel / Render / Railway.
+
+(son nombres de recursos, no enlaces — si quieres te paso enlaces concretos).
+
+# 6) Consejos para replicar exactamente el look de las imágenes
+
+* Usa un fondo **muy oscuro** con gradientes radiales (puntos de luz).
+* Crea capas: fondo (gradiente), shapes (circles con blur), UI (glass cards), highlights (neon accents con `filter: blur()` y `mix-blend-mode`).
+* Usa `backdrop-filter` para difuminar lo que está detrás del glass.
+* Para el brillo en bordes usa pseudo-elementos con gradiente y `mix-blend-mode: screen`.
+* Para el “credit card glass” (transparente):
+
+  * borde redondeado, `border: 1px solid rgba(255,255,255,0.12)`, `backdrop-filter: blur(6px)`.
+  * texto claro y espaciado amplio.
+
+# 7) Sugerencia de estructura de proyecto (frontend)
+
+```
+/src
+  /components
+    Header.tsx
+    Hero.tsx
+    ProjectCard.tsx
+    PostList.tsx
+  /pages
+    Home.tsx
+    Projects.tsx
+    Post.tsx
+    About.tsx
+  /styles
+    globals.css (Tailwind + custom)
+  main.tsx
+package.json
+```
+
+# 8) Buenas prácticas y cosas que debes aprender durante el camino
+
+* Accesibilidad (a11y) — etiquetas semánticas, contrast ratios.
+* Performance: optimizar imágenes (webp), lazy loading.
+* SEO: meta tags, OG images (puedes generar uno con puppeteer o servicios).
+* Control de versiones (feature branches, PRs).
+* Testing básico (unit tests en funciones críticas).
+* Backup/restore de la DB si usas una.
+
+# 9) Qué puedo hacer ahora por ti (elige una cosa y la hago ya)
+
+1. Generarte el **starter repo** (React + Vite + Tailwind + TypeScript) con la estructura y ejemplo de hero + glass card.
+2. Crear un **snippet CSS** listo para copiar con el efecto glass/neon y ejemplos HTML.
+3. Escribir la **API minimal** en Go o Node para servir posts como JSON.
+4. Diseñar (en texto o MD) la wireframe y la paleta exacta (HEX + tipografías).
+
+Dime cuál de estas 4 quieres ahora y te lo entrego inmediatamente (lista para copiar).
+
+---
+
+Listo — te propuse camino, skills concretas y entregables. ¿Con cuál de las 4 acciones quieres que empiece ahora? (p. ej. “starter repo React + Tailwind”)
